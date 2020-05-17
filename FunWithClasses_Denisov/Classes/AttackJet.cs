@@ -10,9 +10,13 @@ namespace Classes
     {
         public int emptyWeight;
         public int maxWeight;
-        public int payload;
-        public AttackJet(string _manufacturer, string _model, int _engineThrust):base(_manufacturer,_model,_engineThrust)
+        
+        public AttackJet(string _manufacturer, string _model, int _engineThrust, int _payload, int _pylonsNumber) :base(_manufacturer, _model, _engineThrust,  _payload,  _pylonsNumber)
         {         
+        }
+        //public static AttackJet operator +(AttackJet attackJet1, AttackJet attackJet2,)
+        {
+
         }
     }
 }
