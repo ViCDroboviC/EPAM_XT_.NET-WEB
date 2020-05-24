@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace General
 {
@@ -28,6 +24,44 @@ namespace General
         public static void WriteText(string text)
         {
             Console.WriteLine(text);
+        }
+
+        public static void WriteArray(int [] array)
+        {
+            foreach (int i in array)
+            {
+                Console.Write(String.Format("{0, 4}", i));
+            }
+            Console.WriteLine();
+        }
+
+        public static void WriteTwoDimensionalArray(int [,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(String.Format("{0, 4}", array[i, j]));
+                }
+                WriteText("");
+            }
+        }
+
+        public static void WriteThreeDimensionalArray(int[,,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                WriteText($"\nlayer {i}:");
+                for (int j = 0; j < array.GetLength(1); j++)
+                {                    
+                    for (int n = 0; n < array.GetLength(2); n++)
+                    {
+                        Console.Write(String.Format("{0, 3}", array[i,j,n]));
+                    }
+                    WriteText("");
+                }
+            }
+            Console.WriteLine();
         }
 
         public static void PressAnyKey()
