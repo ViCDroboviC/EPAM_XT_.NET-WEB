@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using General;
 
 namespace Task1._1._6
 {
@@ -10,6 +6,11 @@ namespace Task1._1._6
     {
         static void Main(string[] args)
         {
+            ConsoleHelper.WriteText($"Greetings!\nThis programm contains different writing styles.\nPress any key to continue.");
+            ConsoleHelper.PressAnyKey();
+            ConsoleHelper.SetForeGroundColorGreen();
+            WritingStyles.ShowWritingStyle();
+            ConsoleHelper.PressAnyKey();
         }
     }
 }

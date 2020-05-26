@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace General
 {
@@ -89,21 +85,26 @@ namespace General
         public static void CalculateSummOfEven (int [,] array)
         {
             int summ = 0;
+            var numberOfEvenElements = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    switch (i + j % 2)
+                    switch ((i + j) % 2)
                     {
                         case 0:
+                            ConsoleHelper.WriteText($"{i} {j}");
+                            numberOfEvenElements++;
                             summ = summ + array[i, j];
                             break;
                         case 1:
                             break;
+                        default:
+                            throw new Exception("Unexpected exception.");
                     }
                 }
             }
-            ConsoleHelper.WriteText($"Summ is: {summ}");
+            ConsoleHelper.WriteText($"Number of even elements is:{numberOfEvenElements}.\nSumm is: {summ}");
         }
     }
 }

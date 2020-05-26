@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34454C86-311A-4084-9ECA-173924D49AE4}</ProjectGuid>
+    <ProjectGuid>{7ED42E0B-E5FA-4CA9-A00E-04AE0F0AE36A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task1._1._6</RootNamespace>
-    <AssemblyName>Task1.1.6</AssemblyName>
+    <RootNamespace>General</RootNamespace>
+    <AssemblyName>General</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,17 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Services\General.csproj">
-      <Project>{72A03A0A-B2E4-4584-84C1-60AC82309026}</Project>
-      <Name>General</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

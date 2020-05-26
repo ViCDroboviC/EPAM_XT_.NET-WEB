@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34454C86-311A-4084-9ECA-173924D49AE4}</ProjectGuid>
+    <ProjectGuid>{066CEF1D-68E2-4365-A9D8-251C516E7AA6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task1._1._6</RootNamespace>
-    <AssemblyName>Task1.1.6</AssemblyName>
+    <RootNamespace>Task1._2._2</RootNamespace>
+    <AssemblyName>Task1.2.2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,8 +50,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Services\General.csproj">
-      <Project>{72A03A0A-B2E4-4584-84C1-60AC82309026}</Project>
+    <ProjectReference Include="..\General\General.csproj">
+      <Project>{7ED42E0B-E5FA-4CA9-A00E-04AE0F0AE36A}</Project>
       <Name>General</Name>
     </ProjectReference>
   </ItemGroup>
