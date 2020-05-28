@@ -22,9 +22,7 @@ namespace General
         }
 
         private static void ChangeStyle(ref Styles currentStyle)
-            //И на этом методе я сломал голову.
-            //На доводку уже не оставалось времени. Из улучшений считаю возможным сделать по методу для каждого кейса, чтобы улучшить читаемость.
-        {           
+            {
             int theChoise = ConsoleHelper.ReadValue($"Choose one of allowed styles:\n1: {Styles.bold.ToString()}\n" +
                 $"2: {Styles.italic.ToString()}\n3: {Styles.underline.ToString()}\n4: If style suits you\n");
             if (theChoise > 4
@@ -35,53 +33,52 @@ namespace General
             switch (theChoise)
             {
                 case 1:
-                    if (!currentStyle.HasFlag(Styles.bold))
+                    currentStyle = currentStyle ^ Styles.bold;
+                    if (currentStyle == 0)
                     {
-                        currentStyle = currentStyle | Styles.bold;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
+                        currentStyle = (Styles.none);
                     }
-                    else
-                    {
-                        currentStyle = currentStyle ^ Styles.bold;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
-                    }
+                    RemoveNoneIfNeeded(ref currentStyle);
+                    ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
+                    ChangeStyle(ref currentStyle);                   
                     break;
                 case 2:
-                    if (!currentStyle.HasFlag(Styles.italic))
+                    currentStyle = currentStyle ^ Styles.italic;
+                    if (currentStyle == 0)
                     {
-                        currentStyle = currentStyle | Styles.italic;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
+                        currentStyle = (Styles.none);
                     }
-                    else
-                    {
-                        currentStyle = currentStyle ^ Styles.italic;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
-                    }
+                    RemoveNoneIfNeeded(ref currentStyle);
+                    ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
+                    ChangeStyle(ref currentStyle);
                     break;
                 case 3:
-                    if (!currentStyle.HasFlag(Styles.underline))
+                    currentStyle = currentStyle ^ Styles.underline;
+                    if (currentStyle == 0)
                     {
-                        currentStyle = currentStyle | Styles.underline;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
+                        currentStyle = (Styles.none);
                     }
-                    else
-                    {
-                        currentStyle = currentStyle ^ Styles.underline;
-                        ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
-                        ChangeStyle(ref currentStyle);
-                    }
+                    RemoveNoneIfNeeded(ref currentStyle);
+                    ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
+                    ChangeStyle(ref currentStyle);
                     break;
                 case 4:
                     ConsoleHelper.WriteText($"Current style is {currentStyle.ToString()}\n");
                     break;
                 default:
                     throw new Exception("Unexpected exception.");
-            }                
+            }            
+        }
+
+        private static void RemoveNoneIfNeeded(ref Styles currentStyle)
+        {
+            if (currentStyle.HasFlag(Styles.none))
+            {
+                if (currentStyle.HasFlag(Styles.bold) | currentStyle.HasFlag(Styles.italic) | currentStyle.HasFlag(Styles.underline))
+                {
+                    currentStyle = currentStyle ^ Styles.none;
+                }
+            }
         }
     }
 }

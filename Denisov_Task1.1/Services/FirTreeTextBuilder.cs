@@ -7,11 +7,11 @@
             string text = string.Empty;
             for (var i = height - 1; i >= 0; i--)
             {
-                var primarySpace = StringOfSymbols(i, '.');
+                var primarySpace = StringOfSymbols(i, ' ');
                 for (var j = 0; j < height - i; j++)
                 {
-                    text = primarySpace + StringOfSymbols(height - i - j - 1, '.') + StringOfSymbols(j * 2 + 1, '*')
-                        + StringOfSymbols(height - i - j - 1, '.') + primarySpace;
+                    text = primarySpace + StringOfSymbols(height - i - j - 1, ' ') + StringOfSymbols(j * 2 + 1, '*')
+                        + StringOfSymbols(height - i - j - 1, ' ') + primarySpace;
                     ConsoleHelper.WriteText(text);
                 }              
             }
