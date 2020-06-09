@@ -1,4 +1,5 @@
 ﻿using General;
+using System;
 
 namespace Task2._1._1
 {
@@ -6,10 +7,11 @@ namespace Task2._1._1
     {
         static void Main(string[] args)
         {
-            Text text1 = new Text("abcdef".ToCharArray());
-            Text text2 = new Text("ghijkl".ToCharArray());
+            Text text1 = new Text("Abcdef");
+            Text text2 = new Text("abcdef");
             var text3 = text1 + text2;
-            ConsoleHelper.Write(text3);
+            var comparsion = text1 == text2;
+            ConsoleHelper.Write($"{comparsion}");
             ConsoleHelper.PressAnyKey();
         }
     }

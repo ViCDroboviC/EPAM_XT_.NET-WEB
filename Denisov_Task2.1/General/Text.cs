@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace General
+﻿namespace General
 {
     public class Text
     {
         public int Length
-        { get
+        {
+            get
             {
                return symbols.Length;
             }
@@ -23,6 +18,13 @@ namespace General
             symbols.CopyTo(this.symbols, 0);
         } 
 
+        public Text (string str)
+        {
+            var charArrayString = str.ToCharArray();
+            this.symbols = new char[charArrayString.Length];
+            charArrayString.CopyTo(this.symbols, 0);
+        }
+
         public static Text operator + (Text text1, Text text2)
         {
             char[] combinedText = new char[text1.Length + text2.Length];
@@ -30,6 +32,32 @@ namespace General
             text2.symbols.CopyTo(combinedText, text1.Length);
             var newText = new Text(combinedText);
             return newText;
+        }
+
+        public static bool operator == (Text text1, Text text2)
+        {
+            for (int i = 0; i < text1.Length; i++)
+            {
+                if (text1.symbols[i] != text2.symbols[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+            //return text1.symbols.Equals(text2.symbols);
+        }
+
+        public static bool operator != (Text text1, Text text2)
+        {
+            for (int i = 0; i < text1.Length; i++)
+            {
+                if (text1.symbols[i] != text2.symbols[i])
+                {
+                    return true;
+                }               
+            }
+            return false;
+            //return !text1.symbols.Equals(text2.symbols);
         }
 
         public static implicit operator string (Text text)

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace General
 {
@@ -22,6 +18,39 @@ namespace General
         public static void PressAnyKey()
         {
             Console.ReadKey();
+        }
+
+        public static int ReadValue(string text)
+        {
+            int result;
+            bool sucsess;
+            do
+            {
+                Console.Write($"{text}");
+                sucsess = int.TryParse(Console.ReadLine(), out result);
+                if (!sucsess || result <= 0)
+                {
+                    Console.WriteLine("Enter a valid value.");
+                }
+            }
+            while (!sucsess || result <= 0);
+            return result;
+        }
+
+        public static string ReadString (string message)
+        {
+            string str = null;
+            Write(message);
+            do
+            {
+                str = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(str))
+                {
+                    Write($"Enter the valid text!");
+                }
+            }
+            while (string.IsNullOrWhiteSpace(str));
+            return str;
         }
 
         public Text ReadText(string message)
