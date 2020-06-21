@@ -11,11 +11,11 @@ namespace Task2._2._2
     {
         static void Main(string[] args)
         {
-            ConsoleHelper.Write($"Kompass 0,99D CAD system. \n Nonexistent systems 2020.\n All rights not reserved.");
+            ConsoleHelper.Write($"Kompass 0,99D CAD system. \nNonexistent systems 2020.\nAll rights not reserved.\nPress any key to continue...");
             ConsoleHelper.PressAnyKey();
             Console.Clear();
-
-
+            PaintingDesk.Start();
+            ConsoleHelper.PressAnyKey();
         }
     }
 }

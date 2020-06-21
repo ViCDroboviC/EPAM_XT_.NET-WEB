@@ -10,7 +10,7 @@ namespace Task2._2._2
         {
             get
             {
-                return side * secondSide
+                return side * secondSide;
             }
         }
 

@@ -6,28 +6,37 @@ namespace Task2._2._2
 {
     public class PaintingDesk
     {
-        List<IPrintable> paintingSpace = new List<IPrintable>();
+        static List<IPrintable> paintingSpace = new List<IPrintable>();
 
-        public void Start()
+        public static void Start()
         {
-            DrawingTool.DrawFigure();
-            switch (ChooseAction())
+            paintingSpace.Add(DrawingTool.DrawFigure());
+            bool end = false;
+            do
             {
-                case 1:
-                    break;
-                case 2:
-                    DrawingTool.DrawFigure();
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                default:
-                    throw new Exception("Unexpected exception!");
+                switch (ChooseAction())
+                {
+                    case 1:
+                        ShowAll();
+                        Console.Clear();
+                        break;
+                    case 2:
+                        paintingSpace.Add(DrawingTool.DrawFigure());
+                        break;
+                    case 3:
+                        ClearDesk();
+                        break;
+                    case 4:
+                        end = true;
+                        break;
+                    default:
+                        throw new Exception("Unexpected exception!");
+                }
             }
+            while (!end);
         }
 
-        private int ChooseAction()
+        private static int ChooseAction()
         {
             bool res;
             int result = 0;
@@ -43,6 +52,20 @@ namespace Task2._2._2
             }
             while (!res && result >= 5);
             return result;
+        }
+
+        private static void ShowAll()
+        {
+            foreach (IPrintable figure in paintingSpace)
+            {
+                figure.Print();             
+            }
+            ConsoleHelper.PressAnyKey();
+        }
+
+        private static void ClearDesk()
+        {
+            paintingSpace.Clear();
         }
     }
 }
