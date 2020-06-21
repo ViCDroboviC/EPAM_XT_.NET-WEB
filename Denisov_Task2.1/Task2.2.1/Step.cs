@@ -8,26 +8,19 @@ namespace Task2._2._1
 {
     static public class Step
     {
-        public static void NextStep(ref GameWorld world, ref int score, ref bool gameOver)
+        public static void NextStep(GameWorld world, ref int score)
         {
-            MooveObjects(ref world);
+            MooveObjects(world, ref score);
         }
 
-        private static void MooveObjects(ref GameWorld world)
+        private static void MooveObjects(GameWorld world, ref int score)
         {
             var objects = (world.Objects).Where(obj => obj is IMooveable);
 
             foreach (IMooveable obj in objects)
             {
-                obj.Moove(world);
+                obj.Moove(world, ref score);
             }
-            //foreach (AbstractGameObject obj in world.Objects)
-            //{
-            //    if (obj is IMooveable)
-            //    {
-            //        (obj as IMooveable).Moove();
-            //    }
-            //}
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Task2._2._1
             damage = 50;
         }
 
-        public override void Moove(GameWorld world)
+        public override void Moove(GameWorld world, ref int score)
         {
             bool mooveComplete = false;
             int heading = ChooseDirection();

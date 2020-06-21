@@ -14,7 +14,7 @@
                     break;
             }
 
-            GameSession newSession = new GameSession(newWorld);
+            GameSession newSession = new GameSession(newWorld, 5);
             newSession.Start();
         }       
         private static int ChooseDifficulty()

@@ -8,6 +8,6 @@ namespace Task2._2._1
 {
     interface IMooveable
     {
-        void Moove(GameWorld world);
+        void Moove(GameWorld world, ref int score);
     }
 }

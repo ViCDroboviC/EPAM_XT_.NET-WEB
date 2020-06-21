@@ -10,7 +10,7 @@ namespace Task2._2._1
     {
         public AbstractMooveableObject(int x, int y) : base(x, y) { }
 
-        public abstract void Moove(GameWorld world);
+        public abstract void Moove(GameWorld world, ref int score);
 
         protected abstract int ChooseDirection();
     }
