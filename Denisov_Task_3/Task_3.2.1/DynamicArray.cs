@@ -10,32 +10,6 @@ namespace General
     public class DynamicArray<T> : ICollection<T>, IEnumerable<T>, ICollection, IEnumerable
     {
         protected T[] items;
-        public int Capacity
-        {
-            get
-            {
-                return items.Length;
-            }
-        }
-        public int Count
-        {
-            get
-            {
-                int length = items.Length;
-                for (int i = items.Length; i>=0; i--)
-                {
-                    if (items[i] == null)
-                    {
-                        length--;
-                    }
-                    else
-                    {
-                        return length;
-                    }
-                }
-                return length;
-            }
-        }
 
         public bool IsReadOnly => throw new NotImplementedException();
 
@@ -85,21 +59,46 @@ namespace General
             }
         }
 
-        public T this[int index]
+        public int Capacity
         {
             get
             {
-                return items[index];
+                return items.Length;
             }
+        }
+        public int Count
+        {
+            get
+            {
+                return Count;
+            }
+            protected set { }
         }
 
         public void Add(T item)
         {
-            if(Capacity == Count)
+            if(item == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if(Capacity > Count)
+            {
+                items[Count + 1] = item;
+            }
+
+            if (Capacity == Count)
             {
                 T[] newArray = new T[Capacity * 2];
+
                 items.CopyTo(newArray, 0);
                 items = newArray;
+                items[Count + 1] = item;
+                RecountCount();
+            }
+            else
+            {
+                throw new Exception("Unexpected exception");
             }
         }
 
@@ -127,15 +126,24 @@ namespace General
         }
 
         public bool Remove(T item)
-        {
+        {            
+            int FirstRemoovedIndex = 0;
             if(Contains(item))
             {
-                for (int i = 0; i<= Count; i++)
+                for (int i = 0; i < Count; i++)
                 {
                     if (items[i].Equals(item))
                     {
                         items[i] = default;
+
+                        FirstRemoovedIndex = i;
+
+                        break;
                     }
+                }
+                for(int i = FirstRemoovedIndex; i < Count; i++)
+                {
+                    items[i] = items[i + 1];
                 }
                 return true;
             }
@@ -158,6 +166,33 @@ namespace General
         public void CopyTo(Array array, int index)
         {
             throw new NotImplementedException();
+        }
+
+        private void RecountCount()
+        {
+            int res = items.Length;
+
+            for(int i = items.Length; i >0; i--)
+            {
+                if(items[i] == null)
+                {
+                    res--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            Count = res;
+        } 
+
+        public T this[int index]
+        {
+            get
+            {
+                return items[index];
+            }
         }
     }
 }
