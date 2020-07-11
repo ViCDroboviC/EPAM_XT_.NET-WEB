@@ -32,6 +32,7 @@ namespace Task_3._3._3
                 }
 
             }
+            Console.WriteLine($"Заказ № {n} готов к выдаче!");
         }
 
         private enum PizzaTypes
