@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Task_3._3._1
@@ -27,7 +28,29 @@ namespace Task_3._3._1
 
         public static int FindMostRepeating(this int[] mass)
         {
-            return mass.();
+            Dictionary<int, int> numbers = new Dictionary<int, int>();
+            KeyValuePair<int, int> mostRepeating = new KeyValuePair<int, int>(0, 0);
+            foreach (int number in mass)
+            {
+                if (!numbers.ContainsKey(number))
+                {
+                    numbers.Add(number, 1);
+                }
+                else if (numbers.ContainsKey(number))
+                {
+                    numbers[number]++;
+                }
+            }
+
+            foreach(KeyValuePair<int, int> word in numbers)
+            {
+                mostRepeating = new KeyValuePair<int, int>(0, 0);
+                if (word.Value > mostRepeating.Value)
+                {
+                    mostRepeating = word;
+                }
+            }
+            return mostRepeating.Key;
         }
     }
 }
