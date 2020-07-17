@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace General
 {
     public class DynamicArray<T> : ICollection<T>, IEnumerable<T>, ICollection, IEnumerable
     {
         protected T[] items;
+
+        private int count;
 
         public bool IsReadOnly => throw new NotImplementedException();
 
@@ -70,7 +69,8 @@ namespace General
         {
             get
             {
-                return Count;
+                RecountCount();
+                return count;
             }
             protected set { }
         }
@@ -153,15 +153,7 @@ namespace General
             }
         }
 
-        public virtual IEnumerator<T> GetEnumerator()
-        {
-            return new DynamicArrayEnumerator<T>(this);
-        }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
 
         public void CopyTo(Array array, int index)
         {
@@ -172,7 +164,7 @@ namespace General
         {
             int res = items.Length;
 
-            for(int i = items.Length; i >0; i--)
+            for(int i = items.Length - 1; i >0; i--)
             {
                 if(items[i] == null)
                 {
@@ -184,8 +176,22 @@ namespace General
                 }
             }
 
-            Count = res;
-        } 
+            count = res;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new DynamicArrayEnumerator<T>(this);
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return new DynamicArrayEnumerator<T>(this);
+            //foreach (T item in items)
+            //{
+            //    yield return item;
+            //}        
+        }
 
         public T this[int index]
         {

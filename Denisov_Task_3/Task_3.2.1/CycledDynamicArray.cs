@@ -8,9 +8,9 @@ namespace General
 {
     public class CycledDynamicArray<T> : DynamicArray<T>, IEnumerable<T>
     {
-        public override IEnumerator<T> GetEnumerator()
-        {
-            return new DynamicArrayEnumerator<T>(this);
-        }
+        //public override IEnumerator<T> GetEnumerator()
+        //{
+        //    return new DynamicArrayEnumerator<T>(this);
+        //}
     }
 }

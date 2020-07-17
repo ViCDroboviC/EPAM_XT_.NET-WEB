@@ -11,7 +11,6 @@ namespace General
     {
         private T[] array;
         private int index;
-        private T current;
 
         public CycledDynamicArrayEnumerator(CycledDynamicArray<T> array)
         {
@@ -21,7 +20,6 @@ namespace General
                 this.array[i] = array[i];
             }
             index = -1;
-            current = default(T);
         }
 
         public object Current

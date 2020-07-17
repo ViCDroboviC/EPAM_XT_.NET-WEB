@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace General
 {
-    public struct DynamicArrayEnumerator<T> : IEnumerator<T>, IEnumerator
+    public struct DynamicArrayEnumerator<T> : IEnumerator<T>
     {
         private T[] array;
         private int index;
-        private T current;
 
         public DynamicArrayEnumerator (DynamicArray<T> array)
         {
             this.array = new T[array.Count];
-            for(int i = 0; i <= array.Count; i++)
+            for(int i = 0; i <= array.Count - 1; i++)
             {
                 this.array[i] = array[i];
             }
             index = -1;
-            current = default(T);
         }
 
         object IEnumerator.Current
@@ -40,7 +38,7 @@ namespace General
         {
             get
             {
-                if (index == -1 || index >= array.Length)
+                if (index == -1 || index > (array.Length - 1))
                 {
                     throw new InvalidOperationException();
                 }
@@ -52,7 +50,7 @@ namespace General
 
         public bool MoveNext()
         {
-            if(index <= array.Length)
+            if(index < (array.Length - 1))
             {
                 index++;
                 return true;
