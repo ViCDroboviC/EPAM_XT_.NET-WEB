@@ -11,6 +11,7 @@ namespace General
     {
         private T[] array;
         private int index;
+        private T current;
 
         public DynamicArrayEnumerator (DynamicArray<T> array)
         {
@@ -20,17 +21,14 @@ namespace General
                 this.array[i] = array[i];
             }
             index = -1;
+            this.current = default(T);
         }
 
         object IEnumerator.Current
         {                   
             get
             {
-                if (index == -1 || index >= array.Length)
-                {
-                throw new InvalidOperationException();
-                }
-                return array[index];
+                return current;
             }
         }
 
@@ -38,11 +36,7 @@ namespace General
         {
             get
             {
-                if (index == -1 || index > (array.Length - 1))
-                {
-                    throw new InvalidOperationException();
-                }
-                return array[index];
+                return current;
             }
         }
 
@@ -50,8 +44,9 @@ namespace General
 
         public bool MoveNext()
         {
-            if(index < (array.Length - 1))
+            if(index < array.Length)
             {
+                current = array[index];
                 index++;
                 return true;
             }
