@@ -41,7 +41,8 @@ namespace Denisov_Task4
                 $"You can recover desired version of file after watching.");
 
             string path = ConsoleHelper.ReadString($"Enter the path to desired folder:");
-            DirectoryWatcher watcher = new DirectoryWatcher(path);
+            //TODO По завершении разработки установить ввод пути к файлу с клавиатуры.
+            DirectoryWatcher watcher = new DirectoryWatcher(@"E:\stydying");//для упрощения тестирования путь задан постоянным.
             Thread threadOfWatcher = new Thread(new ThreadStart(watcher.StartWatch));
 
             ConsoleHelper.WriteText($"You can choose the next actions:\n\npress 1 to begin watching your folder;\n\n" +
