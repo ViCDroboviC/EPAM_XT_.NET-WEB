@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Denisov_Task4
 {
@@ -11,8 +7,9 @@ namespace Denisov_Task4
     {
         public string targetDirectoryPath;
         private FileSystemWatcher watcher;
+        private LogWriter logWriter;
 
-        public DirectoryWatcher(string targetPath)
+        public DirectoryWatcher(string targetPath, LogWriter logWriter)
         {
             if (string.IsNullOrEmpty(targetPath))
             {
@@ -20,6 +17,8 @@ namespace Denisov_Task4
             }
 
             targetDirectoryPath = targetPath;
+
+            this.logWriter = logWriter;
 
             watcher = new FileSystemWatcher();
 
@@ -36,30 +35,10 @@ namespace Denisov_Task4
         {
             watcher.EnableRaisingEvents = true;
 
-            watcher.Changed += OnChanged;
-            watcher.Created += OnCreated;
-            watcher.Deleted += OnDeleted;
-            watcher.Renamed += OnRenamed;
-        }
-
-        private void OnChanged(object source, FileSystemEventArgs e)
-        {
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-        }
-
-        private void OnCreated(object source, FileSystemEventArgs e)
-        {
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-        }
-
-        private void OnRenamed(object source, FileSystemEventArgs e)
-        {
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-        }
-
-        private void OnDeleted(object source, FileSystemEventArgs e)
-        {
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+            watcher.Changed += logWriter.OnChanged;
+            watcher.Created += logWriter.OnCreated;
+            watcher.Deleted += logWriter.OnDeleted;
+            watcher.Renamed += logWriter.OnRenamed;
         }
     }
 }
