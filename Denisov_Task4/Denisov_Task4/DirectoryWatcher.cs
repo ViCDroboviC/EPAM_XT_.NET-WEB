@@ -35,6 +35,8 @@ namespace Denisov_Task4
         {
             watcher.EnableRaisingEvents = true;
 
+            logWriter.WriteAction($"Directory watch has been started.");
+
             watcher.Changed += logWriter.OnChanged;
             watcher.Created += logWriter.OnCreated;
             watcher.Deleted += logWriter.OnDeleted;

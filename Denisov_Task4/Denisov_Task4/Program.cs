@@ -42,9 +42,15 @@ namespace Denisov_Task4
 
             string path = ConsoleHelper.ReadString($"Enter the path to desired folder:");
 
-            LogWriter logWriter = new LogWriter(@"E:\stydying");
+            LogWriter logWriter = new LogWriter(@"E:\stydying\temp");
+
+            DirectoryHelper directoryHelper = new DirectoryHelper(@"E:\stydying\workdir", @"E:\stydying\temp\reserve copy", logWriter);
+
+            directoryHelper.CreateReserveCopyOfDir();
+
+
             //TODO По завершении разработки установить ввод пути к файлу с клавиатуры.
-            DirectoryWatcher watcher = new DirectoryWatcher(@"E:\stydying", logWriter);//для упрощения тестирования путь задан постоянным.
+            DirectoryWatcher watcher = new DirectoryWatcher(@"E:\stydying\workdir", logWriter);//для упрощения тестирования путь задан постоянным.
             Thread threadOfWatcher = new Thread(new ThreadStart(watcher.StartWatch));
 
             ConsoleHelper.WriteText($"You can choose the next actions:\n\npress 1 to begin watching your folder;\n\n" +
