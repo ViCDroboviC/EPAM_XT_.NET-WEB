@@ -8,8 +8,9 @@ namespace Denisov_Task4
         public string targetDirectoryPath;
         private FileSystemWatcher watcher;
         private LogWriter logWriter;
+        private DirectoryHelper directoryHelper;
 
-        public DirectoryWatcher(string targetPath, LogWriter logWriter)
+        public DirectoryWatcher(string targetPath, LogWriter logWriter, DirectoryHelper directoryHelper)
         {
             if (string.IsNullOrEmpty(targetPath))
             {
@@ -19,6 +20,8 @@ namespace Denisov_Task4
             targetDirectoryPath = targetPath;
 
             this.logWriter = logWriter;
+
+            this.directoryHelper = directoryHelper;
 
             watcher = new FileSystemWatcher();
 
@@ -34,13 +37,21 @@ namespace Denisov_Task4
         public void StartWatch()
         {
             watcher.EnableRaisingEvents = true;
+            watcher.IncludeSubdirectories = true;
 
             logWriter.WriteAction($"Directory watch has been started.");
 
             watcher.Changed += logWriter.OnChanged;
+            watcher.Changed += directoryHelper.OnChanged;
+
             watcher.Created += logWriter.OnCreated;
+            watcher.Created += directoryHelper.OnCreated;
+
             watcher.Deleted += logWriter.OnDeleted;
+            watcher.Deleted += directoryHelper.OnDeleted;
+
             watcher.Renamed += logWriter.OnRenamed;
+            watcher.Renamed += directoryHelper.OnRenamed;
         }
     }
 }

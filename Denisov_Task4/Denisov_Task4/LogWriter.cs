@@ -11,9 +11,9 @@ namespace Denisov_Task4
     {
         private string path;
 
-        public LogWriter(string path)
+        public LogWriter()
         {
-            this.path = path + @"\log.txt";
+            this.path = Path.Combine(Environment.CurrentDirectory, "log.txt");
         }
 
         public async void OnChanged(object source, FileSystemEventArgs e)
@@ -40,7 +40,7 @@ namespace Denisov_Task4
         {
             using (var sw = new StreamWriter((path), true, Encoding.UTF8))
             {
-                sw.WriteLine($"\n{DateTime.Now.Hour}:{DateTime.Now.Minute} {message}\n");
+                sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} {message}\n");
                 sw.Close();
             }
         }
@@ -49,7 +49,7 @@ namespace Denisov_Task4
         {
             using (var sw = new StreamWriter((path), true, Encoding.UTF8))
             {
-                sw.WriteLine($"\n{DateTime.Now.Hour}:{DateTime.Now.Minute} File: {e.Name} {e.ChangeType}\n");
+                sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} File: {e.Name} {e.ChangeType}\n");
                 sw.Close();
             }
         }

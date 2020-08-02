@@ -13,20 +13,20 @@ namespace Denisov_Task4
         string targetPath; //папка для рабочих файлов программы
         LogWriter logWriter;
 
-        public DirectoryHelper(string path1, string path2, LogWriter logWriter)
+        public DirectoryHelper(string path1, LogWriter logWriter)
         {
             workPath = path1;
-            targetPath = path2;
+            targetPath = @"E:\stydying\temp\"; //Environment.CurrentDirectory + @"temp";
             this.logWriter = logWriter;
         }
 
-        public void CreateReserveCopyOfDir()
+        public void CreateReserveCopyOfDir(string dateOfCreation)
         {
             foreach (string dirPath in Directory.GetDirectories(workPath, "*", SearchOption.AllDirectories))
             {
                 try
                 {
-                    Directory.CreateDirectory(dirPath.Replace(workPath, targetPath));
+                    Directory.CreateDirectory(dirPath.Replace(workPath, targetPath + dateOfCreation));
                 }
                 catch (Exception e)
                 {
@@ -38,7 +38,7 @@ namespace Denisov_Task4
             {
                 try
                 {
-                    File.Copy(newPath, newPath.Replace(workPath, targetPath), true);
+                    File.Copy(newPath, newPath.Replace(workPath, targetPath + dateOfCreation), true);
                 }
                 catch (Exception e)
                 {
@@ -47,6 +47,26 @@ namespace Denisov_Task4
             }
 
             logWriter.WriteAction($"Reserve copy of directory has been created.");
+        }
+
+        public async void OnChanged(object source, FileSystemEventArgs e)
+        {
+            await Task.Run(() => CreateReserveCopyOfDir(DateTime.Now.ToString("ddMMMyyyyHmmss")));
+        }
+
+        public async void OnCreated(object source, FileSystemEventArgs e)
+        {
+            await Task.Run(() => CreateReserveCopyOfDir(DateTime.Now.ToString("ddMMMyyyyHmmss")));
+        }
+
+        public async void OnRenamed(object source, FileSystemEventArgs e)
+        {
+            await Task.Run(() => CreateReserveCopyOfDir(DateTime.Now.ToString("ddMMMyyyyHmmss")));
+        }
+
+        public async void OnDeleted(object source, FileSystemEventArgs e)
+        {
+            await Task.Run(() => CreateReserveCopyOfDir(DateTime.Now.ToString("ddMMMyyyyHmmss")));
         }
     }
 }
