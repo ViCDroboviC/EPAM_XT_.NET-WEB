@@ -69,10 +69,14 @@ namespace Denisov_Task4
                     case 2:
                         threadOfWatcher.Abort();
                         break;
+                    case 3:
+                        DateTime wanted = ConsoleHelper.ReadTime($"\nEnter the time that you wish to recover for your directory:");
+                        var restorer = new Restorer(directoryHelper, logWriter, wanted, @"E:\stydying\temp\", @"E:\stydying\workdir");
+                        restorer.Recover();
+                        break;
                 }
             }
             while (instance != 4);
-
         }
     }
 }

@@ -46,5 +46,21 @@ namespace Denisov_Task4
         {
             Console.WriteLine(text);
         }
+
+        public static DateTime ReadTime(string message)
+        {
+            DateTime dateTime;
+            bool sucsess;
+            do
+            {
+                sucsess = DateTime.TryParse(Console.ReadLine(), out dateTime);
+                if (!sucsess)
+                {
+                    Console.WriteLine("Enter the valid date and time!");
+                }
+            }
+            while (!sucsess);
+            return dateTime;
+        }
     }
 }
