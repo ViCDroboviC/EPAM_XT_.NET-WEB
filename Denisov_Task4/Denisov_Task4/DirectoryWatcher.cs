@@ -27,7 +27,9 @@ namespace Denisov_Task4
 
             watcher.Path = targetDirectoryPath;
             watcher.Filter = "*.txt";
-            watcher.NotifyFilter = NotifyFilters.Size | NotifyFilters.Attributes | NotifyFilters.LastAccess
+            watcher.NotifyFilter = NotifyFilters.Size 
+                                 | NotifyFilters.Attributes 
+                                 | NotifyFilters.LastAccess
                                  | NotifyFilters.LastWrite
                                  | NotifyFilters.FileName
                                  | NotifyFilters.DirectoryName;

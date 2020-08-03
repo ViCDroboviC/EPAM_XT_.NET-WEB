@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Denisov_Task4
 {
@@ -11,49 +8,54 @@ namespace Denisov_Task4
     {
         private string path;
 
+        private object writerLock = new object();
+
         public LogWriter()
         {
-            this.path = Path.Combine(Environment.CurrentDirectory, "log.txt");
+            path = Path.Combine(Environment.CurrentDirectory, "log.txt");
         }
 
-        public async void OnChanged(object source, FileSystemEventArgs e)
+        public void OnChanged(object source, FileSystemEventArgs e)
         {
-            await Task.Run(() => WriteChange(e));
+            WriteChange(e);
         }
 
-        public async void OnCreated(object source, FileSystemEventArgs e)
+        public  void OnCreated(object source, FileSystemEventArgs e)
         {
-            await Task.Run(() => WriteChange(e));
+            WriteChange(e);
         }
 
-        public async void OnRenamed(object source, FileSystemEventArgs e)
+        public  void OnRenamed(object source, FileSystemEventArgs e)
         {
-            await Task.Run(() => WriteChange(e));
+            WriteChange(e);
         }
 
-        public async void OnDeleted(object source, FileSystemEventArgs e)
+        public  void OnDeleted(object source, FileSystemEventArgs e)
         {
-            await Task.Run(() => WriteChange(e));
+            WriteChange(e);
         }
 
         public void WriteAction(string message)
         {
-            using (var sw = new StreamWriter((path), true, Encoding.UTF8))
+            lock (writerLock)
             {
-                sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} {message}\n");
-                sw.Close();
+                using (var sw = new StreamWriter((path), true, Encoding.UTF8))
+                {
+                    sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} {message}\n");
+                    sw.Close();
+                }
             }
         }
 
         private void WriteChange(FileSystemEventArgs e)
         {
-            using (var sw = new StreamWriter((path), true, Encoding.UTF8))
+            lock (writerLock)
             {
-                sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} File: {e.Name} {e.ChangeType}\n");
-                sw.Close();
+                using (var sw = new StreamWriter((path), true, Encoding.UTF8))
+                {
+                    sw.WriteLine($"\n{DateTime.Now.ToString("dd MMM, yyyy H:mm:ss")} File: {e.Name} {e.ChangeType}\n");
+                }
             }
         }
-
-
     }
 }
