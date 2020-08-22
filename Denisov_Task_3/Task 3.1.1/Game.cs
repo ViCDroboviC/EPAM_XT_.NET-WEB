@@ -36,31 +36,37 @@ namespace Task_3._1._1
             do
             {
                 NextStep();
-                Console.WriteLine($"Press any key to continue...");
+                Console.WriteLine($"Press any key to continue...\n");
                 Console.ReadKey();
             }
-            while (players.Count > knockoutPeriod);
+            while (players.Count >= knockoutPeriod);
             ShowWinners();
         }
 
         private void NextStep()
         {
-            Console.WriteLine(currentPosition);
-            Console.WriteLine($"{currentPosition + knockoutPeriod}");
             if((currentPosition + knockoutPeriod) > players.Count - 1)
             {
                 currentPosition = knockoutPeriod - (players.Count - currentPosition);
-                Console.WriteLine($"Player number {players[currentPosition].number} leaves the game.");
+
+                Console.WriteLine($"Player number {players[currentPosition].number} leaves the game.\n");
+
                 players.RemoveAt(currentPosition);
+
+                currentPosition--;
             }
 
             else if((currentPosition + knockoutPeriod) <= players.Count - 1)
             {
                 currentPosition = currentPosition + knockoutPeriod;
-                Console.Write($"Player number {players[currentPosition].number} leaves the game.");
+
+                Console.WriteLine($"Player number {players[currentPosition].number} leaves the game.\n");
+
                 players.RemoveAt(currentPosition);
+
+                currentPosition--;
             }
-            Console.WriteLine($"Players remained:{players.Count}");
+            Console.WriteLine($"Players remained:{players.Count}\n");
         }
 
         private void ShowWinners()
