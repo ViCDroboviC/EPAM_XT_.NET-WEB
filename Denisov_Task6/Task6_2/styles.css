@@ -1,0 +1,24 @@
+form{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(006, 144, 207);
+    border: 5px solid rgb(000, 117, 178);
+    width: 550px;
+    height: 275px;
+    padding: 2ex 1ex;
+}
+input{
+    margin-top: 0ex;
+}
+
+p{
+    margin-bottom: 0ex;
+}
+.pass{
+    width: 250px;
+    float: left;
+    box-sizing: border-box;
+}
+.input{
+    margin: 2ex;
+}

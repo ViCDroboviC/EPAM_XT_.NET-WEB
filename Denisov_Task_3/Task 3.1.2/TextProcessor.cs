@@ -5,9 +5,9 @@ namespace Task_3._1._2
 {
     public static class TextProcessor
     {
-        public static void Analyse(string text)
+        public static bool Analyse(string text)
         {
-            string[] splittedText = Split(text);
+            string[] splittedText = Split(text.ToLower());
             Dictionary<string, int> textWords = new Dictionary<string, int>();
             foreach(string word in splittedText)
             {
@@ -32,15 +32,7 @@ namespace Task_3._1._2
                     isTextIsGood = false;
                 }
             }
-
-            if (isTextIsGood)
-            {
-                Console.WriteLine("This text is good.");
-            }
-            else if (!isTextIsGood)
-            {
-                Console.WriteLine("Try to work with repeating words.");
-            }
+            return isTextIsGood;
         }
 
         private static string[] Split(string text)

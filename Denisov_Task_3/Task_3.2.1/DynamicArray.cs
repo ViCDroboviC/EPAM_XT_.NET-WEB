@@ -199,6 +199,10 @@ namespace General
             {
                 return items[index];
             }
+            set
+            {
+                items[index] = value;
+            }
         }
     }
 }

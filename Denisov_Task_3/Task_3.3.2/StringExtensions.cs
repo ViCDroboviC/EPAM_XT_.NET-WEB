@@ -42,15 +42,15 @@ namespace Task_3._3._2
                 isNumber = true;
             }
 
-            if(isRussian || !isEnglish || !isNumber)
+            if(isRussian && !isEnglish && !isNumber)
             {
                 Console.WriteLine("Russian Word");
             }
-            else if(!isRussian || isEnglish || !isNumber)
+            else if(!isRussian && isEnglish && !isNumber)
             {
                 Console.WriteLine("English Word");
             }
-            else if(!isRussian || !isEnglish || isNumber)
+            else if(!isRussian && !isEnglish && isNumber)
             {
                 Console.WriteLine("Nubers");
             }
