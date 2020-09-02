@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Task6_5</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="filter" onclick="show('none')">
+
+    </div>
+    <div id="modalForm">
+        <input id="Head" type="text" placeholder="Введите заголовок">
+        <hr>
+        <input type="text" placeholder="Текст заметки">
+        <button id="close" onclick="show('none')">Закрыть</button>
+        <button type="submit">Создать</button>
+    </div>
+
+    <div class="main">
+        <div class="header">Заметки</div>
+
+        <hr>
+
+        <div class="search">
+            <form>
+                <button id="search" type="submit"></button>
+                <input type="text" placeholder="Поиск">
+            </form>
+        </div>
+        <hr>
+
+        <div class="content">
+            <button type="button" class="add" onclick="show('block')">+</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
