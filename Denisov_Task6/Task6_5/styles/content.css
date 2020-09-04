@@ -1,0 +1,32 @@
+.content{
+    margin-top: 250px;
+    width: 100%;
+    height: 80%;
+}
+
+.add{
+    position: fixed;
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: lightskyblue;
+    margin: auto auto 20px auto;
+    float: right;
+    border: none;
+    outline: none;
+    right: 50px;
+    bottom: 50px;
+}
+
+.noteSheet{
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    padding: 30px;
+    left: 15%;
+    position: absolute;
+    width: 70%;
+    height: 75%;
+    background: rgb(255, 255, 255);
+}
