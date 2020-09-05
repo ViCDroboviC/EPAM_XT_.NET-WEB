@@ -17,9 +17,9 @@
     <div id="modalForm">
         <input id="Head" type="text" placeholder="Введите заголовок">
         <hr>
-        <input type="text" placeholder="Текст заметки">
+        <textarea type="text" placeholder="Текст заметки"></textarea>
         <button id="close" onclick="show('none')">Закрыть</button>
-        <button type="submit">Создать</button>
+        <button id="add" type="submit">Создать</button>
     </div>
 
     <div id ="main">
@@ -35,7 +35,12 @@
         </div>
         <div class="content">
             <div class="noteSheet">
-                
+                <div class="note">
+                    <h2>Просто заголовок заметки.</h2>
+                    <p>Просто текст заметки.</p>
+                    <button type="button" class="delete"></button>
+                    <hr>
+                </div>
             </div>
             <button type="button" class="add" onclick="show('block')">+</button>
         </div>

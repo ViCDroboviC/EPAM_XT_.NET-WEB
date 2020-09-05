@@ -4,6 +4,10 @@
     height: 80%;
 }
 
+hr{
+    margin-top: 50px;
+}
+
 .add{
     position: fixed;
     font-size: 40px;
@@ -29,4 +33,17 @@
     width: 70%;
     height: 75%;
     background: rgb(255, 255, 255);
+    overflow: auto;
+}
+
+.delete{
+    right: 25px;
+    float: right;
+}
+
+.delete::before{
+    content: "\f014";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
 }
