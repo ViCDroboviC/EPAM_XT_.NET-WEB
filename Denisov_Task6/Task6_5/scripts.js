@@ -17,29 +17,38 @@ var AddNote = function(){
 
     var newNoteHead = GetNoteHead();
     var newNoteText = GetNoteText();
-
-    noteSheet.append(CreateNode(noteId, newNoteHead, newNoteText));
+    var newNote = CreateNote(noteId, newNoteHead, newNoteText);
+    noteSheet.appendChild(newNote);
 
     console.log(newNoteHead);
     console.log(newNoteText);
     noteId++;
 }
 
-var CreateNode = function(Id, head, text){
+var CreateNote = function(Id, head, text){
+    console.log("Entered in CreateNode: " + Id + head + text);
     var newNote = document.createElement('div');
     newNote.setAttribute('id', Id);
-    newNote.append(CreateHead(head));
-    newNote.append(CreateText(text));
-    newNote.append(document.createElement('hr'));
+
+    var newHead = CreateHead(head);
+    newNote.appendChild(newHead);
+
+    var newText = CreateText(text);
+    newNote.appendChild(newText);
+
+    newNote.appendChild(document.createElement('hr'));
+    return newNote;
 }
 
 var CreateHead = function(head){
+    console.log("Entered in CreateHead: " + head);
     var newHead = document.createElement('h2');
     newHead.innerHTML = head;
     return newHead;
 }
 
 var CreateText = function(text){
+    console.log("Entered in CreateText: " + text);
     var newText = document.createElement('p');
     newText.innerHTML = text;
     return newText;
