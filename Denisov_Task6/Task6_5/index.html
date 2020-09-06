@@ -11,13 +11,12 @@
     <link href="styles/modalForm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="filter" onclick="show('none')">
-
-    </div>
+    <div id="filter" onclick="show('none')"></div>
+    
     <div id="modalForm">
         <input id="Head" type="text" placeholder="Введите заголовок">
         <hr>
-        <textarea type="text" placeholder="Текст заметки"></textarea>
+        <textarea id="newNote" type="text" placeholder="Текст заметки"></textarea>
         <button id="close" onclick="show('none')">Закрыть</button>
         <button id="add" type="submit">Создать</button>
     </div>
@@ -34,7 +33,7 @@
             </form>
         </div>
         <div class="content">
-            <div class="noteSheet">
+            <div id="noteSheet" class="noteSheet">
                 <div class="note">
                     <h2>Просто заголовок заметки.</h2>
                     <p>Просто текст заметки.</p>
