@@ -1,11 +1,15 @@
 
-/*const DOMMap = {
+const DOMMap = {
+    noteSheetId: 'noteSheet',
     addButtonId: 'add'
-}*/
+}
+
+const notesCollection = [];
 
 let noteId = 0;
-let noteSheet = document.getElementById('noteSheet');
-let addButton = document.getElementById('add');
+
+let noteSheet = document.getElementById(DOMMap.noteSheetId);
+let addButton = document.getElementById(DOMMap.addButtonId);
 
 var show = function(state){
     document.getElementById('modalForm').style.display = state;
@@ -13,20 +17,26 @@ var show = function(state){
 }
 
 var AddNote = function(){
-    console.log("work!")
-
     var newNoteHead = GetNoteHead();
     var newNoteText = GetNoteText();
-    var newNote = CreateNote(noteId, newNoteHead, newNoteText);
+
+    var newNote = {
+        id: noteId,
+        head: newNoteHead,
+        text: newNoteText
+    };
+
+    /*notesCollection.append(newNote);*/
+
+    console.log(newNote);
+
+    var newNote = CreateNote(newNote.id, newNote.head, newNote.text);
     noteSheet.appendChild(newNote);
 
-    console.log(newNoteHead);
-    console.log(newNoteText);
     noteId++;
 }
 
 var CreateNote = function(Id, head, text){
-    console.log("Entered in CreateNode: " + Id + head + text);
     var newNote = document.createElement('div');
     newNote.setAttribute('id', Id);
 
@@ -36,12 +46,14 @@ var CreateNote = function(Id, head, text){
     var newText = CreateText(text);
     newNote.appendChild(newText);
 
+    var deleteButton = CreateButton('delete', 'onclick', 'DeleteNote(this)');
+    newNote.appendChild(deleteButton);
+
     newNote.appendChild(document.createElement('hr'));
     return newNote;
 }
 
 var CreateHead = function(head){
-    console.log("Entered in CreateHead: " + head);
     var newHead = document.createElement('h2');
     newHead.innerHTML = head;
     return newHead;
@@ -54,12 +66,23 @@ var CreateText = function(text){
     return newText;
 }
 
+var CreateButton = function(buttonClass, attribute, attributeValue){
+    var newButton = document.createElement('button');
+    newButton.className = buttonClass;
+    newButton.setAttribute(attribute, attributeValue);
+    return newButton;
+}
+
 var GetNoteHead = function(){
     return document.getElementById('Head').value;
 }
 
 var GetNoteText = function(){
     return document.getElementById("newNote").value;
+}
+
+var DeleteNote = function(note){
+    note.parentNode.remove();
 }
 
 addButton.onclick = AddNote;
