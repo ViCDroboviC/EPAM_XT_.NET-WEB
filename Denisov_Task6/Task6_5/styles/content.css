@@ -47,3 +47,15 @@ hr{
     font-size: 20px;
     color: rgb(51, 51, 51);
 }
+
+.edit{
+    right: 60px;
+    float: right;
+}
+
+.edit::before{
+    content: "\f040";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+}
