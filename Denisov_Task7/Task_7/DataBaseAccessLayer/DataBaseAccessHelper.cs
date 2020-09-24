@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using common;
+using DAL.Common;
 using Entities;
 
 namespace DataBaseAccessLayer

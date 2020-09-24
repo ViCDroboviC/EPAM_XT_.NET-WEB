@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Denisov_Task7</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="styles/general.css" rel="stylesheet" type="text/css" />
+    <link href="styles/search.css" rel="stylesheet" type="text/css" />
+    <link href="styles/content.css" rel="stylesheet" type="text/css" />
+    <link href="styles/modalForm.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="filter" onclick="Hide()"></div>
+
+    <div id="modalForm">
+        <input id="Head" type="text" placeholder="Введите заголовок">
+        <hr>
+        <textarea id="newNote" type="text" placeholder="Текст заметки"></textarea>
+        <button id="close" onclick="Hide()">Закрыть</button>
+        <button id="add" type="submit"></button>
+    </div>
+
+    <div id="main">
+        <div id="header">
+            <h1>Rolepaying Game</h1>
+        </div>
+
+        <div class="search">
+            <form>
+                <button id="search" type="submit"></button>
+                <input type="text" placeholder="Поиск">
+            </form>
+        </div>
+        <div class="content">
+            <div id="userList">
+                @RenderBody()
+            </div>
+            <div id="noteSheet" class="noteSheet">                
+            </div>
+            <button id="showAddForm" type="button" class="add" onclick="show('Создать')">+</button>
+        </div>
+    </div>
+</body>
+<script src="scripts/scripts.js"></script>
+</html>

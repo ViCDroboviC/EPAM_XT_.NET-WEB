@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB81BFCA-DF2E-44FE-9FAB-438BE2FFB322}</ProjectGuid>
+    <ProjectGuid>{D75C2710-6469-4ADF-B05A-89DD26637097}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>common</RootNamespace>
-    <AssemblyName>common</AssemblyName>
+    <RootNamespace>DAL.DependencyResolver</RootNamespace>
+    <AssemblyName>DAL.DependencyResolver</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IusersDAL.cs" />
+    <Compile Include="DALResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Entities\Entities.csproj">
-      <Project>{2b532b46-9eb5-44e3-a201-84ced28489cb}</Project>
-      <Name>Entities</Name>
+    <ProjectReference Include="..\DAL.Common\DAL.Common.csproj">
+      <Project>{BED8CBAA-FBCE-4204-AABE-6068D98890DD}</Project>
+      <Name>DAL.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBaseAccessLayer\DataBaseAccessLayer.csproj">
+      <Project>{619A1FBF-FF98-4431-8573-8FAD43C04F87}</Project>
+      <Name>DataBaseAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

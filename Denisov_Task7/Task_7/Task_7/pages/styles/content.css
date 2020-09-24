@@ -1,0 +1,72 @@
+.content{
+    margin-top: 250px;
+    width: 100%;
+    height: 80%;
+}
+
+hr{
+    margin-top: 50px;
+}
+
+.add{
+    position: fixed;
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: lightskyblue;
+    margin: auto auto 20px auto;
+    float: right;
+    border: none;
+    outline: none;
+    right: 50px;
+    bottom: 50px;
+}
+
+.noteSheet{
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    padding: 30px;
+    margin-left: 50px;
+    width: 50%;
+    height: 60%;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+}
+
+.delete{
+    right: 25px;
+    float: right;
+}
+
+.delete::before{
+    content: "\f014";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+}
+
+.edit{
+    right: 60px;
+    float: right;
+}
+
+.edit::before{
+    content: "\f040";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+}
+
+#userList{
+    float: right;
+    width: 20%;
+    height: 60%;
+    border-radius: 25px;
+    border: none;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    margin-right: 100px;
+    padding: 30px;
+}

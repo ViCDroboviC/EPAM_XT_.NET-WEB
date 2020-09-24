@@ -1,0 +1,18 @@
+﻿@using Entities;
+@using BLL.DependencyResolver;
+@using BLL.Common;
+@using Task_7.pages;
+@{
+    Layout = "~/pages/BasicLayout.cshtml";
+
+    var bll = BLLResolver.UsersDAL;
+    var users = bll.GetAllUsers();
+}
+
+<div>
+    @foreach(User _user in users)
+    {
+        UserContainer.currentUser = _user;
+            @RenderPage("~/pages/_UserArticle.cshtml")
+    }    
+</div>

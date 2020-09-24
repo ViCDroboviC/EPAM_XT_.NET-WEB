@@ -91,11 +91,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\UserContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="UI\index.cshtml" />
+    <Content Include="pages\index.cshtml" />
+    <Content Include="pages\UserList.cshtml" />
+    <Content Include="pages\BasicLayout.cshtml" />
+    <Content Include="pages\_UserArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -103,8 +107,20 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="common\" />
+    <ProjectReference Include="..\BLL.Common\BLL.Common.csproj">
+      <Project>{ee4a01d9-b7b2-4700-a07e-424b8f83abfa}</Project>
+      <Name>BLL.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL.DependencyResolver\BLL.DependencyResolver.csproj">
+      <Project>{40a9cbe6-425f-4599-8dde-f9caceede2b2}</Project>
+      <Name>BLL.DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{2b532b46-9eb5-44e3-a201-84ced28489cb}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
