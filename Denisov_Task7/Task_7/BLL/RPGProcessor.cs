@@ -1,23 +1,22 @@
 ﻿using BLL.Common;
+using DAL.Common;
 using Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class RPGLogicLayer : IBLL
+    public class RPGProcessor : IProcessable
     {
-        private List<User> UserList;
+        private List<User> Users;
 
-        public RPGLogicLayer()
+        private List<Award> awards;
+
+        private IAccessable dal;
+
+        public RPGProcessor(IAccessable dal)
         {
-            UserList = new List<User>();
-            UserList.Add(new User(1, "Vic", "Viktor", "admin", DateTime.Now, 5));
-            UserList.Add(new User(2, "Andrew", "Viktor", "admin", DateTime.Now, 5));
-            UserList.Add(new User(3, "Roman", "Viktor", "admin", DateTime.Now, 5));
+            this.dal = dal;
         }
         public void addUser(User user)
         {
@@ -31,7 +30,7 @@ namespace BLL
 
         public List<User> GetAllUsers()
         {
-            return UserList;
+            return Users;
         }
 
         public User GetUserData()

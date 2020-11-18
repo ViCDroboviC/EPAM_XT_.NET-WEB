@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Common
 {
-    public interface IBLL
+    public interface IProcessable
     {
         void addUser(User user);
 

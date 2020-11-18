@@ -109,13 +109,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\BLL.Common\BLL.Common.csproj">
+    <ProjectReference Include="..\BLL.Common\BLL.Contracts.csproj">
       <Project>{ee4a01d9-b7b2-4700-a07e-424b8f83abfa}</Project>
-      <Name>BLL.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BLL.DependencyResolver\BLL.DependencyResolver.csproj">
-      <Project>{40a9cbe6-425f-4599-8dde-f9caceede2b2}</Project>
-      <Name>BLL.DependencyResolver</Name>
+      <Name>BLL.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{2b532b46-9eb5-44e3-a201-84ced28489cb}</Project>

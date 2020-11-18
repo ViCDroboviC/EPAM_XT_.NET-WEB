@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Common
 {
-    public interface IusersDAL
+    public interface IAccessable
     {
         void AddAwardToUser(User userToChange, int awardId);
 

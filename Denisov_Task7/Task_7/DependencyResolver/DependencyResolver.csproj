@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{619A1FBF-FF98-4431-8573-8FAD43C04F87}</ProjectGuid>
+    <ProjectGuid>{4C9FACC2-AB37-484B-A097-26389D2A7CA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataBaseAccessLayer</RootNamespace>
-    <AssemblyName>DataBaseAccessLayer</AssemblyName>
+    <RootNamespace>DependencyResolver</RootNamespace>
+    <AssemblyName>DependencyResolver</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,18 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractAccess.cs" />
-    <Compile Include="DataBaseAccessHelper.cs" />
+    <Compile Include="Resolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL.Common\BLL.Contracts.csproj">
+      <Project>{EE4A01D9-B7B2-4700-A07E-424B8F83ABFA}</Project>
+      <Name>BLL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{847BCF0F-EA87-462E-A033-09EB7C1B49E1}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL.Common\DAL.Contracts.csproj">
-      <Project>{bed8cbaa-fbce-4204-aabe-6068d98890dd}</Project>
+      <Project>{BED8CBAA-FBCE-4204-AABE-6068D98890DD}</Project>
       <Name>DAL.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{2b532b46-9eb5-44e3-a201-84ced28489cb}</Project>
-      <Name>Entities</Name>
+    <ProjectReference Include="..\DataBaseAccessLayer\DataBaseAccessLayer.csproj">
+      <Project>{619A1FBF-FF98-4431-8573-8FAD43C04F87}</Project>
+      <Name>DataBaseAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

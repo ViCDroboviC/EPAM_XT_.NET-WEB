@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RPGLogicLayer.cs" />
+    <Compile Include="RPGProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL.Common\BLL.Common.csproj">
+    <ProjectReference Include="..\BLL.Common\BLL.Contracts.csproj">
       <Project>{EE4A01D9-B7B2-4700-A07E-424B8F83ABFA}</Project>
-      <Name>BLL.Common</Name>
+      <Name>BLL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.Common\DAL.Contracts.csproj">
+      <Project>{BED8CBAA-FBCE-4204-AABE-6068D98890DD}</Project>
+      <Name>DAL.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{2B532B46-9EB5-44E3-A201-84CED28489CB}</Project>

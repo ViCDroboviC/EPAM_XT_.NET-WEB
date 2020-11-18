@@ -10,13 +10,12 @@ using Entities;
 
 namespace DataBaseAccessLayer
 {
-    public class DataBaseAccessHelper : IusersDAL
+    public class DataBaseAccess : IAccessable
     {
 
         private static SqlConnection connection = new SqlConnection(_connectionString);
-        //в случае проблем с подсоединением к БД проверять это место в первую очередь
 
-        public DataBaseAccessHelper() { }
+        public DataBaseAccess() { }
 
         private static string _connectionString => ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
 
