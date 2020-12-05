@@ -14,7 +14,7 @@ namespace BLL.Common
 
         List<User> GetAllUsers();
 
-        void Authorize(string username, string password);
+        bool Authenticate(string username, int password);
 
         User GetUserData();
     }

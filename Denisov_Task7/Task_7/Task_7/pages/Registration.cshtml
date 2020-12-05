@@ -1,12 +1,5 @@
-﻿@using Entities;
-@using BLL.Common;
-@using DependencyResolver;
-@using Task_7.pages;
-@{
+﻿@{
     Layout = "~/pages/BasicLayout.cshtml";
-
-    var bll = Resolver.bll;
-    var users = bll.GetAllUsers();
 }
 
 <div id="userList">

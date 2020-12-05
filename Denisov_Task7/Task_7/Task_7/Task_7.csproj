@@ -100,6 +100,8 @@
     <Content Include="pages\UserList.cshtml" />
     <Content Include="pages\BasicLayout.cshtml" />
     <Content Include="pages\_UserArticle.cshtml" />
+    <Content Include="pages\Authentication.cshtml" />
+    <Content Include="pages\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,6 +114,10 @@
     <ProjectReference Include="..\BLL.Common\BLL.Contracts.csproj">
       <Project>{ee4a01d9-b7b2-4700-a07e-424b8f83abfa}</Project>
       <Name>BLL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
+      <Project>{4c9facc2-ab37-484b-a097-26389d2a7ca0}</Project>
+      <Name>DependencyResolver</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{2b532b46-9eb5-44e3-a201-84ced28489cb}</Project>

@@ -23,7 +23,7 @@ namespace DAL.Common
 
         User GetUserData(int wantedUserId);
 
-        string GetUserPassword(string wantedUserName);
+        int GetUserPassword(int wantedUserName);
 
         void RemoveAwardFromUser(User userToChange, int awardId);
 

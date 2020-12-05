@@ -15,6 +15,8 @@ namespace DataBaseAccessLayer
 
         private static SqlConnection connection = new SqlConnection(_connectionString);
 
+        private UserDataAccess userData = new UserDataAccess(_connectionString);
+
         public DataBaseAccess() { }
 
         private static string _connectionString => ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
@@ -36,9 +38,9 @@ namespace DataBaseAccessLayer
 
         public List<User> GetAllUsers()
         {
-            List<User> userList = new List<User>(GetUsersList());
+            List<User> userList = new List<User>(userData.GetUsersList());
             return userList;
-        }
+        }//ok
 
         public List<Award> GetAwards()
         {
@@ -60,18 +62,15 @@ namespace DataBaseAccessLayer
         {
             User WantedUser = GetUserById(wantedUserId);
             List<int> UserAwards = new List<int>(GetUserAwardsList(wantedUserId));
-            WantedUser.AddAward(UserAwards);
+            //WantedUser.AddAward(UserAwards);
             return WantedUser;
         }
                
-        public string GetUserPassword(string wantedUserName)
+        public int GetUserPassword(int wantedId)
         {
-            //Вызывается при авторизации при вводе никнейма и пароля
-            //Первым этапом пользователь находится в БД, затем возвращается его пароль для верификации
-
-            User wantedUser = GetByUserName(wantedUserName);
-            return wantedUser.password;
-        }
+            int password = userData.GetPassword(wantedId);
+            return password;
+        }//ok
 
         public void RemoveAwardFromUser(User userToChange, int awardId)
         {
@@ -82,36 +81,6 @@ namespace DataBaseAccessLayer
         {
             DeleteUser(userToDelete.id);
             DeleteUserFromRes(userToDelete.id);
-        }
-
-        private IEnumerable<User> GetUsersList()
-        {
-            using (connection) //действительно ли нужен юзинг, если соединение=константа
-            {
-                var storedProcedure = "dbo.Users_GetAll";
-
-                var command = new SqlCommand(storedProcedure, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                connection.Open();
-
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    //реализовать нормальный парсинг из базы
-                    var id = (int)reader["id"];
-                    var userName = reader["username"] as string;
-                    var name = reader["Name"] as string;
-                    var dateOfBirth = (DateTime)reader["DateOfBirth"];
-                    var age = (int)reader["Age"];
-                    var role = reader["role"] as string;
-
-                    yield return new User(id, userName, name, role, dateOfBirth, age);
-                }
-            }
         }
 
         private User GetUserById(int wantedId)
@@ -211,30 +180,6 @@ namespace DataBaseAccessLayer
                 var role = reader["role"] as string;
 
                 return new User(id, userName, name, role, dateOfBirth, age);
-
-            }
-        }
-
-        private string GetPassword(User wantedUser)
-        {
-            using (connection)
-            {
-                var storedProcedure = "dbo.Users_GetByUsername";
-
-                var command = new SqlCommand(storedProcedure, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                command.Parameters.AddWithValue("@userName", wantedUser.userName);
-
-                connection.Open();
-
-                var reader = command.ExecuteReader();
-
-                var password = reader["password"] as string;
-
-                return password;
 
             }
         }

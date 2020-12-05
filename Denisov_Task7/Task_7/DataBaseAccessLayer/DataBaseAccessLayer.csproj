@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccess.cs" />
+    <Compile Include="AwardsDataAccess.cs" />
     <Compile Include="DataBaseAccessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.Common\DAL.Contracts.csproj">

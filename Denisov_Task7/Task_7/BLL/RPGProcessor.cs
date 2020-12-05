@@ -3,6 +3,7 @@ using DAL.Common;
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -23,9 +24,18 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public void Authorize(string username, string password)
+        public bool Authenticate(string username, int password)
         {
-            throw new NotImplementedException();
+            Initialize();
+            var user = Users.FirstOrDefault(_user => _user.name.ToLower() == username.ToLower());
+            if(user.password == password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<User> GetAllUsers()
@@ -36,6 +46,12 @@ namespace BLL
         public User GetUserData()
         {
             throw new NotImplementedException();
+        }
+
+        private void Initialize()
+        {
+            Users = dal.GetAllUsers();
+            awards = dal.GetAwards();
         }
     }
 }
