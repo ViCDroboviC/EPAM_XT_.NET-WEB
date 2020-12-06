@@ -17,8 +17,6 @@ namespace Entities
             this.age = age;
         }
 
-        public int password { get; }
-
         public int id { get; set; }
 
         public string userName { get; set; }

@@ -24,11 +24,12 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public bool Authenticate(string username, int password)
+        public bool Authenticate(string username, int passwordToCheck)
         {
             Initialize();
             var user = Users.FirstOrDefault(_user => _user.name.ToLower() == username.ToLower());
-            if(user.password == password)
+            var password = dal.GetUserPassword(user.id);
+            if(password == passwordToCheck)
             {
                 return true;
             }

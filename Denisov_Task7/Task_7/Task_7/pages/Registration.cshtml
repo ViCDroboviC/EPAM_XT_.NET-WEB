@@ -9,12 +9,19 @@
     }
 </div>
 <div id="noteSheet" class="noteSheet">
-    @if (User.Identity.IsAuthenticated)
-    {
-
-    }
-    else
-    {
-        <span>Welcome guest! Please <a href="~/pages/Authentication.cshtml">sign in</a>, or <a href="~/pages/Registration.cshtml">register</a> to continue.</span>
-    }
+    <section id="RegistrationForm">
+        <h2>Registration</h2>
+        <form action="~/pages/Authentication.cshtml" method="post">
+            <p><input type="text" name="nickname" placeholder="Nickname" /></p>
+            <p><input type="text" name="name" placeholder="Name" /></p>
+            <p><input type="date" name="dateOfBirth" /></p>
+            <p><input type="password" name="password" placeholder="Password" /></p>
+            @*@if (IsPost || message != null)
+            {
+                <p id="warning">@message</p>
+            }*@
+            <p><button>Register</button></p>
+        </form>
+        <a href="~/pages/index.cshtml">back</a>
+    </section>
 </div>
