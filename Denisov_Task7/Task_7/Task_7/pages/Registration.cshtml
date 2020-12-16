@@ -1,5 +1,35 @@
-﻿@{
+﻿@using DependencyResolver;
+@{
     Layout = "~/pages/BasicLayout.cshtml";
+
+    string message = null;
+
+    string nickname = null;
+    string name = null;
+    DateTime dateOfBirth;
+    int password;
+
+    var bll = Resolver.bll;
+
+    if (IsPost)
+    {
+        var _nickname = Request["nickname"];
+        var _name = Request["name"];
+        var _date = Request["dateOfBirth"];
+        var _password = Request["password"];
+
+        if(string.IsNullOrWhiteSpace(_nickname) || string.IsNullOrWhiteSpace(_name) || string.IsNullOrWhiteSpace(_date) || string.IsNullOrWhiteSpace(_password))
+        {
+            message = "Please fill all fields!";
+        }
+        else
+        {
+            nickname = _nickname;
+            name = _name;
+            DateTime.TryParse(_date, out dateOfBirth);
+            password = _password.GetHashCode();
+        }
+    }
 }
 
 <div id="userList">
@@ -11,15 +41,15 @@
 <div id="noteSheet" class="noteSheet">
     <section id="RegistrationForm">
         <h2>Registration</h2>
-        <form action="~/pages/Authentication.cshtml" method="post">
+        <form action="~/pages/Registration.cshtml" method="post">
             <p><input type="text" name="nickname" placeholder="Nickname" /></p>
             <p><input type="text" name="name" placeholder="Name" /></p>
             <p><input type="date" name="dateOfBirth" /></p>
             <p><input type="password" name="password" placeholder="Password" /></p>
             @*@if (IsPost || message != null)
-            {
-                <p id="warning">@message</p>
-            }*@
+                {
+                    <p id="warning">@message</p>
+                }*@
             <p><button>Register</button></p>
         </form>
         <a href="~/pages/index.cshtml">back</a>

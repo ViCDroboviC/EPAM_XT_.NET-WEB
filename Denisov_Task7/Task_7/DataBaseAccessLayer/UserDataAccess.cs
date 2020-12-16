@@ -46,29 +46,32 @@ namespace DataBaseAccessLayer
 
         internal int GetPassword(int id)
         {
-            using (connection)
+            using (connection = new SqlConnection(connectionString))
             {
-                var storedProcedure = "dbo.Users_GetByUsername";
+                var storedProcedure = "dbo.Users_GetPassword";
 
                 var command = new SqlCommand(storedProcedure, connection)
                 {
                     CommandType = System.Data.CommandType.StoredProcedure
                 };
 
-                var userName = new SqlParameter("@id", SqlDbType.Int)
+                var wantedId = new SqlParameter("@id", SqlDbType.Int)
                 {
                     Value = id
                 };
 
-                command.Parameters.Add(userName);
+                command.Parameters.Add(wantedId);
 
                 connection.Open();
 
                 var reader = command.ExecuteReader();
 
-                var password = (int)reader["password"];
-
-                return password;
+                while (reader.Read())
+                {
+                    var password = (int)reader["password"];
+                    return password;
+                }
+                return 0;
             }
         }
     }

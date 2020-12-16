@@ -27,7 +27,7 @@ namespace BLL
         public bool Authenticate(string username, int passwordToCheck)
         {
             Initialize();
-            var user = Users.FirstOrDefault(_user => _user.name.ToLower() == username.ToLower());
+            var user = Users.FirstOrDefault(_user => _user.userName.ToLower() == username.ToLower());
             var password = dal.GetUserPassword(user.id);
             if(password == passwordToCheck)
             {
